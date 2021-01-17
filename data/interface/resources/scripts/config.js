@@ -93,19 +93,22 @@ var config  = {
     "name": '',
     "connect": function () {
       config.port.name = "webapp";
+      var context = document.documentElement.getAttribute("context");
       /*  */
       if (chrome.runtime) {
         if (chrome.runtime.connect) {
-          if (document.location.search === "?tab") config.port.name = "tab";
-          if (document.location.search === "?win") config.port.name = "win";
-          if (document.location.search === "?popup") config.port.name = "popup";
-          /*  */
-          if (config.port.name === "popup") {
-            document.body.style.width = "790px";
-            document.body.style.height = "580px";
+          if (context !== config.port.name) {
+            if (document.location.search === "?tab") config.port.name = "tab";
+            if (document.location.search === "?win") config.port.name = "win";
+            if (document.location.search === "?popup") config.port.name = "popup";
+            /*  */
+            if (config.port.name === "popup") {
+              document.body.style.width = "790px";
+              document.body.style.height = "580px";
+            }
+            /*  */
+            chrome.runtime.connect({"name": config.port.name});
           }
-          /*  */
-          chrome.runtime.connect({"name": config.port.name});
         }
       }
       /*  */
