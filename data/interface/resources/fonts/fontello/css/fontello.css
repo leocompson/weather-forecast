@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'fontello';
+  src: url('../font/fontello.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  width: 1em;
+  line-height: 1em;
+  margin-left: .2em;
+  margin-right: .2em;
+  font-style: normal;
+  text-align: center;
+  font-weight: normal; 
+  text-transform: none;
+  font-variant: normal;
+  display: inline-block;
+  font-family: 'fontello';
+  text-decoration: inherit;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+ 
+.icon-cog:before {content: '\e805'}
+.icon-home:before {content: '\e800'}
+.icon-search:before {content: '\e803'}
+.icon-refresh:before {content: '\e804'}
+.icon-location:before {content: '\e806'}
+.icon-favorite:before {content: '\e802'}
+.icon-favorite-empty:before {content: '\e801'}
