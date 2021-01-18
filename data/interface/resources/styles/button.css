@@ -1,0 +1,20 @@
+.button {
+  color: #fff;
+  border: none;
+  width: 128px;
+  outline: none;
+  padding: 10px 0;
+  cursor: pointer;
+  text-align: center;
+  align-self: flex-end;
+  font-family: inherit;
+  font-weight: inherit;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: 300ms ease all;
+  background-color: var(--theme);
+}
+
+.button:hover {
+  background-color: #ddbd06;
+}

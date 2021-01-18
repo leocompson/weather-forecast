@@ -1,0 +1,71 @@
+.settings-page {
+  font-weight: normal;
+  animation: fadein 400ms forwards;
+}
+
+.settings-page p {
+  color: #fff;
+  margin: 10px;
+}
+
+.settings-page .note {
+  color: #ddbd06;
+  font-size: 11px;
+}
+
+.settings-page label {
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.settings-page-pageshow {
+  color: #fff;
+  display: flex;
+  letter-spacing: 1px;
+}
+
+.settings-item {
+  border: 0;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.settings-title {
+  padding: 10px;
+  font-size: 12px;
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  background-color: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.settings-refresh-intervals {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.settings-refresh-intervals > span {
+  border: 0;
+  padding: 0;
+  color: #fff;
+  margin: 1px;
+  width: 58px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 42px;
+  text-align: center;
+  display: inline-block;
+  transition: 300ms ease all;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.settings-refresh-intervals > span:not(.settings-refresh-interval-active):hover {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.settings-refresh-intervals .settings-refresh-interval-active {
+  color: #292929;
+  background-color: #ddbd06;
+}

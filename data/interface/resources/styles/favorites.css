@@ -1,0 +1,115 @@
+.favorites-page p {
+  margin: 5px 0;
+}
+
+.favorites-page-pageshow {
+  color: #fff;
+  display: flex;
+  letter-spacing: 1px;
+}
+
+.favorites-page-pageshow:empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme);
+}
+
+.favorites-page-pageshow:empty::before {
+  color: #ddbd06;
+  font-size: 350%;
+  content: '\e801';
+  font-family: 'fontello';
+}
+
+.favorites-page-pageshow:empty::after {
+  color: #fff;
+  font-size: 100%;
+  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  content: 'There are no cities in the favorites list';
+}
+
+.favorite-item {
+  border: 0;
+  margin: 0;
+  height: 100px;
+  padding: 0 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  position: relative;
+  background-size: cover;
+  box-sizing: border-box;
+  transition: 300ms ease all;
+  background-color: rgba(0,0,0,0.3);
+  animation: fadein 400ms forwards;
+}
+
+.favorite-item table {
+  height: 100%;
+}
+
+.favorite-item > div {
+  pointer-events: none;
+}
+
+.favorite-item .summary {
+  margin-bottom: 0;
+  flex-direction: row;
+}
+
+.favorite-item .summary-left {
+  display: none;
+}
+
+.favorite-item .summary-icon {
+  height: 64px;
+  min-width: 64px;
+  font-size: 350%;
+  margin-bottom: 0;
+  line-height: 64px;
+}
+
+.favorite-item .summary-state {
+  margin-bottom: 0;
+  min-width: 90px;
+}
+
+.favorite-item .summary-status {
+  font-size: 12px;
+  margin-bottom: 0;
+  min-width: 90px;
+}
+
+.favorite-item .summary-temp {
+  font-size: 200%;
+}
+
+.favorite-item .summary-deg {
+  font-size: 200%;
+  margin-left: 5px;
+}
+
+.favorite-item .summary-city {
+  font-size: 100%;
+  margin-bottom: 0;
+}
+
+.favorite-item .summary-details {
+  min-width: 256px;
+}
+
+.favorite-item .summary-right {
+  width: unset;
+  min-width: 128px;
+}
+
+.favorite-button-active, .default-button-active {
+  color: #555;
+  background-color: #ddbd06;
+}
+
+.favorite-button-active svg, .default-button-active svg {
+  fill: #3b3b3b !important;
+}

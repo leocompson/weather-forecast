@@ -1,0 +1,79 @@
+.forecast {
+  padding: 0;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  letter-spacing: 1px;
+  flex-direction: row;
+  margin-bottom: 10px;
+  justify-content: center;
+  animation: fadein 400ms forwards;
+}
+
+.forecast-item {
+  border: 0;
+  margin: 1px;
+  width: 128px;
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+  min-width: 90px;
+  max-width: 128px;
+  box-sizing: border-box;
+  flex-direction: column;
+  transition: 300ms ease all;
+}
+
+.forecast-item span, .forecast-item div {
+  pointer-events: none;
+}
+
+.forecast-item .wi {
+  color: #ddbd06;
+  font-size: 22px;
+  text-align: left;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.forecast-item:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.forecast-item-active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.forecast-date {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.forecast-icon {
+  font-size: 200%;
+  margin-bottom: 10px;
+}
+
+.forecast-degree {
+  margin-bottom: 10px;
+}
+
+.forecast-min, .forecast-max {
+  margin: 0;
+  font-size: 12px;
+}
+
+.forecast-max {
+  margin-right: 10px;
+}
+
+.forecast-status {
+  width: 100%;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+}

@@ -1,0 +1,48 @@
+.navigation {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.navigation .navigation-item {
+  color: #fff;
+  width: 52px;
+  height: 48px;
+  display: flex;
+  cursor: pointer;
+  margin-right: 1px;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transition: 300ms ease all;
+}
+
+.navigation .navigation-item > span {
+  pointer-events: none;
+}
+
+.navigation .navigation-item > svg {
+  fill: #fff;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.navigation .navigation-item:not(.navigation-item-active):hover {
+  background-color: #ddbd06;
+}
+
+.navigation .navigation-item-active {
+  background-color: #ddbd06;
+}
+
+.navigation .navigation-item-active svg {
+  fill: #3b3b3b !important;
+}
+
+.navigation-icon {
+  font-size: 12px;
+}

@@ -1,0 +1,71 @@
+.hourly-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  max-width: 1280px;
+  overflow-y: hidden;
+}
+
+.hourly-items {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  justify-content: center;
+}
+
+.hourly-item {
+  flex: 1;
+  margin: 1px;
+  width: 90px;
+  padding: 5px;
+  display: flex;
+  max-width: 128px;
+  box-sizing: border-box;
+  flex-direction: column;
+  animation: fadein 400ms forwards;
+}
+
+.hourly-item > span {
+  padding-left: 10px;
+}
+
+.hourly-icon {
+  color: #ddbd06;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.hourly-temp {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.hourly-status {
+  font-size: 12px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+
+.hourly-humidity {
+  font-size: 12px;
+  padding-left: 16px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.hourly-humidity::before {
+  color: #fff;
+  content: '\f078';
+  margin-right: 10px;
+  font-family: 'weathericons';
+}
+
+.hourly-hour {
+  color: #fff;
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  padding-top: 10px;
+  border-top: solid 1px rgba(255, 255, 255, 0.15);
+}

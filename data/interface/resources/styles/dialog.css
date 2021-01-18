@@ -1,0 +1,40 @@
+.dialog {
+  display: none;
+}
+
+.dialog-box {
+  width: 350px;
+  height: 128px;
+  padding: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: white;
+  animation: fadein 400ms forwards;
+  background: white url('../../../icons/64.png') no-repeat calc(100% - 10px) 5px;
+  background-size: 32px;
+}
+
+.dialog-box p {
+  color: #555;
+  margin: 10px;
+}
+
+.dialog-areaname {
+  font-weight: bold;
+}
+
+.dialog-description {
+  line-height: 16px;
+  text-align: justify;
+}
+
+.dialog-box .button {
+  right: 10px;
+  bottom: 10px;
+  position: absolute;
+}
+
+.dialog-box .button:hover {
+  background-color: #232323;
+}

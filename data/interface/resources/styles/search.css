@@ -1,0 +1,28 @@
+.search {
+  display: flex;
+  margin-right: 0;
+  position: relative;
+}
+
+.icon-search {
+  top: 0;
+  left: 0;
+  padding: 0;
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+  line-height: 48px;
+  position: absolute;
+  text-align: center;
+  border-left: solid 1px rgba(255, 255, 255, 0.15);
+  border-right: solid 1px rgba(255, 255, 255, 0.15);
+}
+
+.search .search-button {
+  width: 78px;
+  height: 48px;
+  cursor: pointer;
+  font-size: 12px;
+  border-left: solid 1px rgba(255, 255, 255, 0.15);
+}
