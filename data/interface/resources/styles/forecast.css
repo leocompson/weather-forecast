@@ -16,14 +16,16 @@
   border: 0;
   margin: 1px;
   width: 128px;
+  height: 128px;
   padding: 10px;
   display: flex;
   cursor: pointer;
-  min-width: 90px;
+  min-width: 128px;
   max-width: 128px;
   box-sizing: border-box;
   flex-direction: column;
   transition: 300ms ease all;
+  justify-content: space-between;
 }
 
 .forecast-item span, .forecast-item div {

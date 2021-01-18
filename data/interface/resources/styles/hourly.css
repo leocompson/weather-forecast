@@ -16,9 +16,10 @@
 .hourly-item {
   flex: 1;
   margin: 1px;
-  width: 90px;
-  padding: 5px;
+  width: 128px;
+  padding: 10px;
   display: flex;
+  min-width: 90px;
   max-width: 128px;
   box-sizing: border-box;
   flex-direction: column;

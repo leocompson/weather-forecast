@@ -1,11 +1,4 @@
 @media (max-width: 700px) {
-  table {
-    width: 100%;
-  }
-  table tr td {
-    display: flex;
-    flex-flow: column;
-  }
   input[type='search'] {
     width: 150px;
     padding-left: 10px;
@@ -13,10 +6,11 @@
   }
   /*  */
   .homepage table {
-    margin-bottom: 0;
+    width: 100%;
   }
-  .homepage:not(.expand) .summary {
-    padding: 24px;
+  .homepage table tr td {
+    display: flex;
+    flex-flow: column;
   }
   .homepage .summary-left {
     display: none;
@@ -25,17 +19,7 @@
     height: 48px;
     line-height: 48px;
   }
-  .homepage.expand .summary {
-    padding: 0;
-    border-left: 0;
-    border-right: 0;
-  }
-  .homepage.expand .summary-temp {
-    font-size: 300%;
-  }
-  .summary-details > span {
-    padding: 2px;
-  }
+  /*  */
   .summary-city {
     font-size: 120%;
   }
@@ -45,7 +29,6 @@
   .summary-deg {
     font-size: 250%;
   }
-  /*  */
   .page-title {
     padding: 10px;
     width: calc(100% - 20px);
@@ -59,6 +42,29 @@
   .icon-search {
     display: none;
   }
+  /*  */
+  .homepage:not(.expand) .summary {
+    padding: 24px;
+  }
+  .homepage.expand table {
+    background-color: rgba(0,0,0,0.1);
+  }
+  .homepage.expand .summary {
+    border-left: 0;
+    border-right: 0;
+  }
+  .homepage.expand .summary-right {
+    border-top: solid 1px rgba(255, 255, 255, 0.05);
+  }
+  .homepage.expand .summary-temp {
+    font-size: 250%;
+  }
+  .homepage.expand .summary-deg {
+    font-size: 200%;
+  }
+  .homepage.expand .summary-status {
+    font-size: 100%;
+  }
 }
 
 @media (max-width: 500px) {
@@ -68,13 +74,16 @@
   .search .search-button {
     width: 36px;
   }
-  .homepage:not(.expand) .summary {
-    padding: 12px;
-  }
   .navigation .navigation-item {
     width: 28px;
   }
   .forecast, .hourly-items {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 300px) {
+  .homepage:not(.expand) .summary {
+    padding: 12px;
   }
 }

@@ -54,7 +54,6 @@
 
 .summary-details {
   display: flex;
-  font-size: 12px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -62,5 +61,6 @@
 .summary-details > span {
   margin: 1px;
   padding: 5px;
+  font-size: 100%;
   display: inline-block;
 }
