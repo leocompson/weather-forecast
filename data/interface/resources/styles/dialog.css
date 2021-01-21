@@ -4,7 +4,7 @@
 
 .dialog-box {
   width: 350px;
-  height: 128px;
+  height: 132px;
   padding: 10px;
   display: flex;
   position: relative;
@@ -26,7 +26,10 @@
 
 .dialog-description {
   line-height: 16px;
+  user-select: text;
   text-align: justify;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .dialog-box .button {

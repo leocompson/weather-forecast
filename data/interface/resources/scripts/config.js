@@ -118,8 +118,10 @@ var config  = {
   "app": {
     "start": function () {
       var root = document.querySelector(":root");
+      var apikey = config.storage.read("weather.api.key");
       config.api.url = "https://api.openweathermap.org/data/2.5/";
       /*  */
+      config.api.key = apikey !== undefined ? apikey : config.format("63df2792a1e35a13415625bac825a318");
       config.weather.current = config.storage.read("weather.current") !== undefined ? config.storage.read("weather.current") : {};
       config.weather.default = config.storage.read("weather.default") !== undefined ? config.storage.read("weather.default") : {};
       config.presets.units = config.storage.read("weather.units") !== undefined ? config.storage.read("weather.units") : "Imperial";
@@ -129,7 +131,6 @@ var config  = {
       config.presets.theme.color = config.storage.read("weather.theme.color") !== undefined ? config.storage.read("weather.theme.color") : "#3b3b3b";
       config.presets.refresh.interval = config.storage.read("weather.refresh.interval") !== undefined ? config.storage.read("weather.refresh.interval") : 15;
       config.presets.decimal.points = config.storage.read("weather.decimal.points") !== undefined ? config.storage.read("weather.decimal.points") : "no-decimal-points";
-      config.api.key = config.storage.read("weather.api.key") !== undefined ? config.storage.read("weather.api.key") : config.format("63df2792a1e35a13415625bac825a318");
       /*  */
       var active = document.querySelector(".settings-refresh-interval-active");
       if (active) active.classList.remove("settings-refresh-interval-active");
@@ -140,15 +141,19 @@ var config  = {
       document.getElementById("theme-color").value = config.presets.theme.color;
       document.querySelector('input[value ="' + config.presets.units + '"]').checked = true;
       document.querySelector('input[value ="' + config.presets.launch.type + '"]').checked = true;
+      document.getElementById("api-key").value = apikey !== undefined ? apikey : "default api key";
       document.querySelector('input[value ="' + config.presets.decimal.points + '"]').checked = true;
       document.querySelector('[data-min="' + config.presets.refresh.interval + '"]').classList.add("settings-refresh-interval-active");
-      document.getElementById("api-key").value = config.storage.read("weather.api.key") !== undefined ? config.storage.read("weather.api.key") : "default api key";
       /*  */
       config.methods.initialize.settings.default();
       config.methods.initialize.settings.current();
       if (action) {
         window.setTimeout(function () {
           action.click();
+          /*  */
+          if (apikey === undefined) {
+            config.handle.error("new-api-key", "API Key");
+          }
         }, 300);
       }
     }
@@ -235,29 +240,33 @@ var config  = {
         }
       } 
     },
-    "error": function (e) {
+    "error": function (id, title) {
       var loader = document.getElementById("loader");
       var dialog = document.getElementById("dialog");
       var areaname = document.getElementById("dialog-areaname");
       var description = document.getElementById("dialog-description");
       /*  */
-      if (e === "no-geolocation") {
+      if (id === "new-api-key") {
+        description.textContent = "Before using the app, please obtain a new free API key from the openweathermap.org website. Then, add it to the settings tab, bottom section. To get help, please read the third FAQ here: https://openweathermap.org/faq";
+      }
+      /*  */
+      if (id === "no-geolocation") {
         description.textContent = "The Geolocation API failed!";
       }
       /*  */
-      if (e === "no-results-found") {
+      if (id === "no-results-found") {
         description.textContent = "No results found!";
       }
       /*  */
-      if (e === "weather-fetch-error") {
+      if (id === "weather-fetch-error") {
         description.textContent = "Could not fetch the weather data! Please try again later and if the error persists, consider changing the API key via the settings page.";
       }
       /*  */
-      if (e === "forecast-fetch-error") {
+      if (id === "forecast-fetch-error") {
         description.textContent = "Could not fetch the forecast data! Please try again later and if the error persists, consider changing the API key via the settings page.";
       }
       /*  */
-      areaname.textContent = "Error";
+      areaname.textContent = title ? title : "Error";
       window.setTimeout(function () {
         dialog.style.display = "flex";
         loader.style.display = "none";
