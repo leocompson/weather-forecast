@@ -26,17 +26,17 @@
   color: #fff;
   padding: 20px;
   margin: 0 auto;
-  font-size: 11px;
+  font-size: 12px;
   margin-bottom: 10px;
   letter-spacing: 1px;
-  width: calc(100% - 40px);
+  width: calc(100% - 32px);
   text-transform: uppercase;
   border-bottom: solid 1px #ddbd06;
   animation: fadein 400ms forwards;
 }
 
 .favorites-heading, .settings-heading {
-  font-size: 12px;
+  font-size: 13px;
   padding: 10px 5px;
   margin: 0 !important;
   text-transform: uppercase;

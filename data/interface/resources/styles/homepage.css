@@ -3,7 +3,7 @@
 }
 
 .homepage table {
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .homepage .summary {
@@ -23,14 +23,14 @@
 
 .homepage:not(.expand) .summary {
   margin: auto;
-  width: 250px;
-  height: 250px;
+  width: 272px;
+  height: 272px;
   padding: 32px;
   display: flex;
-  min-width: 250px;
-  max-width: 250px;
-  min-height: 250px;
-  max-height: 250px;
+  min-width: 272px;
+  max-width: 272px;
+  min-height: 272px;
+  max-height: 272px;
   border-radius: 50%;
   align-items: center;
   justify-content: center;

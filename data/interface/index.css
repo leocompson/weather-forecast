@@ -13,7 +13,7 @@ html {
 body {
   margin: auto;
   width: 100vw;
-  font-size: 12px;
+  font-size: 13px;
   overflow: hidden;
   max-width: 1280px;
   max-height: 800px;
@@ -62,16 +62,19 @@ input[type='color']::-webkit-color-swatch-wrapper {padding: 0}
 
 input[type='text'] {
   border: 0;
-  width: 277px;
-  height: 22px;
-  padding: 10px;
+  margin: 0;
+  padding: 0;
+  height: 42px;
   outline: none;
   color: #3b3b3b;
-  font-size: 12px;
-  margin: 5px 0 0 0;
-  line-height: 22px;
+  font-size: 13px;
+  margin-top: 5px;
+  line-height: 42px;
+  text-indent: 10px;
   background-color: #fff;
   font-family: monospace;
+  box-sizing: border-box;
+  width: calc(100% - 10px);
 }
 
 input[type='search'] {
@@ -81,7 +84,7 @@ input[type='search'] {
   height: 48px;
   border: none;
   outline: none;
-  padding-left: 58px;
+  padding-left: 64px;
   position: relative;
   transition: 300ms ease all;
   background-color: var(--theme);
@@ -129,6 +132,15 @@ html[context="popup"] .page-title {
 
 html[context="popup"] .hourly-wrapper .hourly-item > span {
   margin-bottom: 5px;
+}
+
+html[context='popup'] .homepage:not(.expand) .summary {
+  width: 250px;
+  height: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 250px;
+  max-height: 250px;
 }
 
 html[context="webapp"] .toolbar .navigation li[nowebapp] {

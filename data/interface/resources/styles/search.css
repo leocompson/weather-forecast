@@ -11,8 +11,8 @@
   color: #fff;
   width: 48px;
   height: 48px;
-  font-size: 14px;
-  line-height: 48px;
+  font-size: 17px;
+  line-height: 52px;
   position: absolute;
   text-align: center;
   border-left: solid 1px rgba(255, 255, 255, 0.15);
@@ -23,6 +23,9 @@
   width: 78px;
   height: 48px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: 1px;
   border-left: solid 1px rgba(255, 255, 255, 0.15);
 }

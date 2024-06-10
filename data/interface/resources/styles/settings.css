@@ -6,15 +6,17 @@
 .settings-page p {
   color: #fff;
   margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .settings-page .note {
   color: #ddbd06;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .settings-page label {
-  font-size: 12px;
+  font-size: 13px;
   vertical-align: middle;
 }
 
@@ -32,7 +34,7 @@
 
 .settings-title {
   padding: 10px;
-  font-size: 12px;
+  font-size: 13px;
   margin: 0 !important;
   margin-bottom: 5px !important;
   background-color: rgba(0,0,0,0.3);
@@ -53,7 +55,7 @@
   width: 58px;
   height: 42px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 42px;
   text-align: center;
   display: inline-block;
@@ -67,5 +69,6 @@
 
 .settings-refresh-intervals .settings-refresh-interval-active {
   color: #292929;
+  font-weight: 600;
   background-color: #ddbd06;
 }

@@ -1,21 +1,23 @@
 {
-  "version": "0.1.2",
-  "manifest_version": 2,
+  "version": "0.1.4",
+  "manifest_version": 3,
   "name": "Weather Forecast",
   "short_name": "weather-forecast",
-  "permissions": ["idle", "alarms", "storage", "contextMenus"],
   "homepage_url": "https://mybrowseraddon.com/weather-forecast.html",
   "description": "Get current weather, including the daily and hourly forecasts for any desired location, plus badge text notification.",
-  "background": {
-    "persistent": false,
-    "scripts": [
-      "lib/config.js", 
-      "lib/chrome.js",
-      "lib/runtime.js",
-      "lib/common.js"
-    ]
+  "commands": {
+    "_execute_action": {}
   },
-  "browser_action": {
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "idle", 
+    "alarms", 
+    "storage", 
+    "contextMenus"
+  ],
+  "action": {
     "default_title": "Weather Forecast",
     "default_icon": {
       "16": "data/icons/16.png",

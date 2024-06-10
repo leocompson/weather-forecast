@@ -1,6 +1,6 @@
 config.listeners = {
   "update": function () {
-    var loader = document.getElementById("loader");
+    const loader = document.getElementById("loader");
     /*  */
     if (navigator.geolocation) {
       loader.style.display = "flex";
@@ -25,13 +25,13 @@ config.listeners = {
   "submit": function (e) {
     e.preventDefault();
     /*  */
-    var form = document.getElementById("form-search");
-    var txt = document.getElementById("txt-search");
-    var index = txt.value.indexOf("Station");
+    const form = document.getElementById("form-search");
+    const txt = document.getElementById("txt-search");
+    const index = txt.value.indexOf("Station");
     /*  */
     if (index !== -1) {
-      var name = txt.value.substring(index);
-      var station = document.querySelector('[data-station="' + name + '"]');
+      const name = txt.value.substring(index);
+      const station = document.querySelector('[data-station="' + name + '"]');
       if (station) {
         config.methods.search.by.id(parseInt(station.dataset.id));
         form.reset();
@@ -50,9 +50,9 @@ config.listeners = {
     }
   },
   "change": function (e) {
-    var parent = e.target.closest("div");
-    var loader = document.getElementById("loader");
-    var target = parent && parent.id ? parent : e.target;
+    const parent = e.target.closest("div");
+    const loader = document.getElementById("loader");
+    const target = parent && parent.id ? parent : e.target;
     /*  */
     if (target.id === "settings-badge") {
       config.presets.decimal.points = e.target.value;
@@ -91,11 +91,11 @@ config.listeners = {
     }
   },
   "input": function (e) {
-    var target = e.target;
+    const target = e.target;
     /*  */
     if (target.id === "theme-color") {
-      var root = document.querySelector(":root");
-      var theme = document.getElementById("theme-color");
+      const root = document.querySelector(":root");
+      const theme = document.getElementById("theme-color");
       /*  */
       config.presets.theme.color = theme.value;
       root.style.setProperty("--theme", config.presets.theme.color);
@@ -106,10 +106,10 @@ config.listeners = {
     if (target.id === "txt-search") {
       config.weather.methods.query.by.name(target.value, config.presets.units, function (suggested) {
         if (suggested) {
-          var counter = 0;
-          var cities = null;
-          var countries = null;
-          var select = document.getElementById("suggested-data-list");
+          let counter = 0;
+          let cities = null;
+          let countries = null;
+          let select = document.getElementById("suggested-data-list");
           /*  */
           if (suggested.list.length > 0) {
             cities = suggested.list.map(p => p.name);
@@ -117,10 +117,10 @@ config.listeners = {
           }
           /*  */
           select.textContent = '';
-          for (var i = 0; i < suggested.list.length; i++) {
-            var option = document.createElement("option");
-            var cond_1 = cities.filter(p => p === suggested.list[i].name).length > 1;
-            var cond_2 = countries.filter(p => p === suggested.list[i].sys.country).length > 1;
+          for (let i = 0; i < suggested.list.length; i++) {
+            const option = document.createElement("option");
+            const cond_1 = cities.filter(p => p === suggested.list[i].name).length > 1;
+            const cond_2 = countries.filter(p => p === suggested.list[i].sys.country).length > 1;
             /*  */
             if (cond_1 && cond_2) {
               counter++;
@@ -148,15 +148,15 @@ config.listeners = {
   "document": function (e) {
     e.stopPropagation();
     /*  */
-    var loader = document.getElementById("loader");
-    var dialog = document.getElementById("dialog");
-    var favorite = document.querySelector(".favorite-button");
-    var areaname = document.getElementById("dialog-areaname");
-    var homepage = document.getElementsByClassName("homepage")[0];
-    var description = document.getElementById("dialog-description");
+    const loader = document.getElementById("loader");
+    const dialog = document.getElementById("dialog");
+    const favorite = document.querySelector(".favorite-button");
+    const areaname = document.getElementById("dialog-areaname");
+    const homepage = document.getElementsByClassName("homepage")[0];
+    const description = document.getElementById("dialog-description");
     /*  */
-    var parent = e.target.closest(".favorite-item");
-    var target = parent ? parent : e.target;
+    const parent = e.target.closest(".favorite-item");
+    const target = parent ? parent : e.target;
     /*  */
     if (target.id === "close-dialog-button") {
       dialog.style.display = "none";
@@ -167,10 +167,10 @@ config.listeners = {
     }
     /*  */
     if (target.classList.contains("settings-refresh-interval")) {
-      var min = target.dataset.min;
+      const min = target.dataset.min;
       config.presets.refresh.interval = parseFloat(min);
       /*  */
-      var active = document.querySelector(".settings-refresh-interval-active");
+      const active = document.querySelector(".settings-refresh-interval-active");
       if (active) active.classList.remove("settings-refresh-interval-active");
       target.classList.add("settings-refresh-interval-active");
       /*  */
@@ -193,7 +193,7 @@ config.listeners = {
     if (target.classList.contains("favorite-button")) {
       homepage.classList.remove("expand");
       /*  */
-      var infavorites = config.weather.favorites.some(p => p.id === config.last.loaded.city.id);
+      const infavorites = config.weather.favorites.some(p => p.id === config.last.loaded.city.id);
       if (infavorites) {
         favorite.classList.remove("favorite-button-active");
         /*  */
@@ -211,8 +211,8 @@ config.listeners = {
     }
     /*  */
     if (target.classList.contains("favorite-item")) {
-      var id = target.dataset.cityId;
-      var action = document.querySelector(".navigation-item[data-page='homepage']");
+      const id = target.dataset.cityId;
+      const action = document.querySelector(".navigation-item[data-page='homepage']");
       /*  */
       homepage.classList.remove("expand");
       /*  */
@@ -267,15 +267,15 @@ config.listeners = {
     }
     /*  */
     if (target.classList.contains("navigation-item")) {
-      var page = target.dataset.page;
-      var item = page ? document.getElementById(page) : null;
-      var navigation = document.querySelector(".navigation-item-active");
+      const page = target.dataset.page;
+      const item = page ? document.getElementById(page) : null;
+      const navigation = document.querySelector(".navigation-item-active");
       /*  */
-      var pages = [...document.querySelectorAll('[class*="-pageshow"]')];
+      const pages = [...document.querySelectorAll('[class*="-pageshow"]')];
       if (pages && pages.length) {
         pages.forEach(function (element) {
           if (element.classList) {
-            var key = element.id ? element.id + "-pageshow" : '';
+            const key = element.id ? element.id + "-pageshow" : '';
             if (key) element.classList.remove(key);
           }
         });
@@ -298,9 +298,9 @@ config.listeners = {
         config.methods.initialize.services(function () { 
           if (config.weather.default) {
             if (config.weather.default.result) {
-              var a = config.last.loaded.city;
-              var b = config.weather.default.result;
-              var button = document.getElementById("set-as-default");
+              const a = config.last.loaded.city;
+              const b = config.weather.default.result;
+              const button = document.getElementById("set-as-default");
               /*  */
               if (a && b && a.id === b.id) {
                 button.classList.add("default-button-active");

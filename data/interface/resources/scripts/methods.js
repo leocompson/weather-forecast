@@ -1,9 +1,9 @@
 config.methods = {
   "load": {
     "current": function () {
-      var loader = document.getElementById("loader");
-      var homepage = document.getElementsByClassName("homepage")[0];
-      var action = document.querySelector(".navigation-item[data-page='homepage']");
+      const loader = document.getElementById("loader");
+      const homepage = document.getElementsByClassName("homepage")[0];
+      const action = document.querySelector(".navigation-item[data-page='homepage']");
       /*  */
       config.interface.create.summary(config.last.loaded.city, config.presets.units, homepage);
       config.interface.create.daily(config.forecast.data, homepage);
@@ -12,9 +12,9 @@ config.methods = {
       if (action) action.click();
     },
     "default": function () {
-      var loader = document.getElementById("loader");
-      var homepage = document.getElementsByClassName("homepage")[0];
-      var action = document.querySelector(".navigation-item[data-page='homepage']");
+      const loader = document.getElementById("loader");
+      const homepage = document.getElementsByClassName("homepage")[0];
+      const action = document.querySelector(".navigation-item[data-page='homepage']");
       /*  */
       loader.style.display = "none";
       config.forecast.data = config.weather.default.forecast;
@@ -28,8 +28,8 @@ config.methods = {
   "search": {
     "by": {
       "id": function (id) {
-        var loader = document.getElementById("loader");
-        var homepage = document.getElementsByClassName("homepage")[0];
+        const loader = document.getElementById("loader");
+        const homepage = document.getElementsByClassName("homepage")[0];
         /*  */
         homepage.textContent = '';
         loader.style.display = "flex";
@@ -55,8 +55,8 @@ config.methods = {
   },
   "refresh": {
     "default": function (loc) {      
-      var loader = document.getElementById("loader");
-      var homepage = document.getElementsByClassName("homepage")[0];
+      const loader = document.getElementById("loader");
+      const homepage = document.getElementsByClassName("homepage")[0];
       /*  */
       homepage.classList.remove("expand");
       config.weather.methods.query.by.id(config.weather.default.result.id, config.presets.units, function (result) {
@@ -79,8 +79,8 @@ config.methods = {
       });
     },
     "current": function () {
-      var loader = document.getElementById("loader");
-      var homepage = document.getElementsByClassName("homepage")[0];
+      const loader = document.getElementById("loader");
+      const homepage = document.getElementsByClassName("homepage")[0];
       /*  */
       homepage.classList.remove("expand");
       config.weather.methods.query.info(function (info) {
@@ -107,9 +107,9 @@ config.methods = {
       });
     },
     "weather": function () {
-      var loader = document.getElementById("loader");
-      var homepage = document.getElementsByClassName("homepage")[0];
-      var action = document.querySelector(".navigation-item[data-page='homepage']");
+      const loader = document.getElementById("loader");
+      const homepage = document.getElementsByClassName("homepage")[0];
+      const action = document.querySelector(".navigation-item[data-page='homepage']");
       /*  */
       homepage.textContent = '';
       loader.style.display = "flex";
@@ -132,9 +132,9 @@ config.methods = {
       });
     },
     "favorites": function (callback) {
-      var counter = 0;
-      var length = config.weather.favorites.length;
-      var homepage = document.getElementsByClassName("homepage")[0];
+      let counter = 0;
+      let length = config.weather.favorites.length;
+      let homepage = document.getElementsByClassName("homepage")[0];
       /*  */
       if (config.weather.favorites.length === 0) {
         if (callback) callback();
@@ -144,7 +144,7 @@ config.methods = {
       config.weather.favorites.forEach(function (p) {
         config.weather.methods.query.by.id(p.id, config.presets.units, function (result) {
           if (result) {
-            var index = config.weather.favorites.findIndex(q => q.id === p.id);
+            let index = config.weather.favorites.findIndex(q => q.id === p.id);
             /*  */
             config.weather.favorites[index].obj = result;
             config.storage.write("weather.favorites", config.weather.favorites);
@@ -161,14 +161,14 @@ config.methods = {
   "initialize": {
     "settings": {
       "current": function () {
-        var name = document.getElementById("current-location-name");
-        var city = config.location.current && config.location.current.city;
+        const name = document.getElementById("current-location-name");
+        const city = config.location.current && config.location.current.city;
         /*  */
         name.textContent = city ? '(' + city + ')' : "(London, GB)";
       },
       "default": function () {
-        var name = document.getElementById("default-location-name");
-        var radio = document.getElementById("radio-default-location");
+        const name = document.getElementById("default-location-name");
+        const radio = document.getElementById("radio-default-location");
         /*  */
         if (config.weather.default && config.weather.default.result) {
           radio.removeAttribute("disabled");
@@ -183,7 +183,7 @@ config.methods = {
       "default": function () {
         if (config.weather.default) {
           if (config.weather.default.result) {
-            var button = document.getElementById("set-as-default");
+            const button = document.getElementById("set-as-default");
             /*  */
             if (config.last.loaded.city && config.last.loaded.city.id === config.weather.default.result.id) {
               button.classList.add("default-button-active");
@@ -196,8 +196,8 @@ config.methods = {
       "favorite": function () {
         if (config.weather.favorites) {
           if (config.weather.favorites.length) {
-            var list = config.weather.favorites.map(p => p.id);
-            var button = document.querySelector(".favorite-button");
+            const list = config.weather.favorites.map(p => p.id);
+            const button = document.querySelector(".favorite-button");
             /*  */
             if (config.last.loaded.city && list.indexOf(config.last.loaded.city.id) > -1) {
               button.classList.add("favorite-button-active");
@@ -209,13 +209,13 @@ config.methods = {
       }
     },
     "favorites": function () {
-      var page = document.getElementById("favorites-page");
+      const page = document.getElementById("favorites-page");
       page.textContent = '';
       /*  */
       if (config.weather.default) {
         if (config.weather.default.result) {
-          var item = document.createElement("div");
-          var heading = document.createElement('p');
+          const item = document.createElement("div");
+          const heading = document.createElement('p');
           /*  */
           heading.textContent = "Default";
           item.className = "favorite-item";
@@ -230,13 +230,13 @@ config.methods = {
       /*  */
       if (config.weather.favorites) {
         if (config.weather.favorites.length) {
-          var heading = document.createElement('p');
+          const heading = document.createElement('p');
           heading.className = "favorites-heading";
           heading.textContent = "Favorites";
           page.appendChild(heading);
           /*  */
           config.weather.favorites.forEach(function (p) {
-            var item = document.createElement("div");
+            const item = document.createElement("div");
             item.dataset.cityId = p.id;
             item.className = "favorite-item";
             config.interface.create.summary(p.obj, config.presets.units, item);
@@ -246,9 +246,9 @@ config.methods = {
       }
     },
     "services": function (callback) {
-      var loader = document.getElementById("loader");
-      var homepage = document.getElementsByClassName("homepage")[0];
-      var action = document.querySelector(".navigation-item[data-page='homepage']");
+      const loader = document.getElementById("loader");
+      const homepage = document.getElementsByClassName("homepage")[0];
+      const action = document.querySelector(".navigation-item[data-page='homepage']");
       /*  */
       homepage.textContent = '';
       loader.style.display = "flex";

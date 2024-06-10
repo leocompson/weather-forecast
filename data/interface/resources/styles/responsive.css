@@ -48,6 +48,12 @@
   /*  */
   .homepage:not(.expand) .summary {
     padding: 24px;
+    width: 250px;
+    height: 250px;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 250px;
+    max-height: 250px;
   }
   .homepage.expand table {
     background-color: rgba(0,0,0,0.1);
@@ -67,6 +73,9 @@
   }
   .homepage.expand .summary-status {
     font-size: 100%;
+  }
+  .summary-details > span {
+    font-size: 95%;
   }
 }
 

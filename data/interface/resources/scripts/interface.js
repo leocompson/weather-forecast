@@ -2,9 +2,9 @@ config.interface = {
   "change": {
     "background": {
       "image": function (code) {        
-        var left = document.querySelector(".summary-left");
+        const left = document.querySelector(".summary-left");
         if (left) {
-          var icon = config.interface.find.icon(code);
+          const icon = config.interface.find.icon(code);
           left.style.background = "url('resources/icons/" + code + "@2x.svg') no-repeat center center";
           left.setAttribute("title", icon.replace(/wi/g, '').replace(/\-/g, '').trim().toLocaleUpperCase());
         }
@@ -37,12 +37,12 @@ config.interface = {
   },
   "create": {
     "hourly": function (date, data, target) {
-      var element = {};
-      var items = document.createElement("div");
-      var hourly = document.createElement("div");
-      var dailytitle = document.createElement('p');
-      var wrapper = document.querySelector(".hourly-wrapper");
-      var hourlydata = data.list.filter(p => p.dt_txt.substring(0, p.dt_txt.indexOf(' ')) === date);
+      const element = {};
+      const items = document.createElement("div");
+      const hourly = document.createElement("div");
+      const dailytitle = document.createElement('p');
+      const wrapper = document.querySelector(".hourly-wrapper");
+      const hourlydata = data.list.filter(p => p.dt_txt.substring(0, p.dt_txt.indexOf(' ')) === date);
       /*  */
       items.className = "hourly-items";
       dailytitle.textContent = "Hourly";
@@ -83,23 +83,23 @@ config.interface = {
       target.appendChild(hourly);
     },
     "summary": function (current, units, target) {
-      var tr = document.createElement("tr");
-      var city = document.createElement('p');
-      var left = document.createElement("td");
-      var right = document.createElement("td");
-      var center = document.createElement("td");
-      var state = document.createElement("div");
-      var temp = document.createElement("span");
-      var icon = document.createElement("div");
-      var wind = document.createElement("span");
-      var degree = document.createElement("span");
-      var summary = document.createElement("div");
-      var status = document.createElement("span");
-      var details = document.createElement("div");
-      var humidity = document.createElement("span");
-      var pressure = document.createElement("span");
-      var visibility = document.createElement("span");
-      var table = document.createElement("table");
+      const tr = document.createElement("tr");
+      const city = document.createElement('p');
+      const left = document.createElement("td");
+      const right = document.createElement("td");
+      const center = document.createElement("td");
+      const state = document.createElement("div");
+      const temp = document.createElement("span");
+      const icon = document.createElement("div");
+      const wind = document.createElement("span");
+      const degree = document.createElement("span");
+      const summary = document.createElement("div");
+      const status = document.createElement("span");
+      const details = document.createElement("div");
+      const humidity = document.createElement("span");
+      const pressure = document.createElement("span");
+      const visibility = document.createElement("span");
+      const table = document.createElement("table");
       /*  */
       summary.className = "summary";
       city.className = "summary-city";
@@ -110,15 +110,20 @@ config.interface = {
       center.className = "summary-center";
       status.className = "summary-status";
       details.className = "summary-details";
-      status.textContent = current.weather[0].description;
-      temp.textContent = Math.round(current.main.temp * 10) / 10;
-      city.textContent = current.name + ", " + current.sys.country;
-      wind.textContent = "Wind" + ' ' + current.wind.speed + " m/h";
-      humidity.textContent = "Humidity" + ' ' + current.main.humidity + '%';
-      pressure.textContent = "Pressure" + ' ' + current.main.pressure + " hpa";
-      icon.className = "summary-icon " + config.interface.find.icon(current.weather[0].icon);
-      degree.className = units === "Imperial" ? "summary-deg wi wi-fahrenheit" : "summary-deg wi wi-celsius";
-      visibility.textContent = current.visibility ? "Visibility" + ' ' + Math.round(current.visibility / 1000) + "km" : "N/A";
+      /*  */
+      if (current.weather) {
+        status.textContent = current.weather[0].description;
+        temp.textContent = Math.round(current.main.temp * 10) / 10;
+        city.textContent = current.name + ", " + current.sys.country;
+        wind.textContent = "Wind" + ' ' + current.wind.speed + " m/h";
+        humidity.textContent = "Humidity" + ' ' + current.main.humidity + '%';
+        pressure.textContent = "Pressure" + ' ' + current.main.pressure + " hpa";
+        icon.className = "summary-icon " + config.interface.find.icon(current.weather[0].icon);
+        degree.className = units === "Imperial" ? "summary-deg wi wi-fahrenheit" : "summary-deg wi wi-celsius";
+        visibility.textContent = current.visibility ? "Visibility" + ' ' + Math.round(current.visibility / 1000) + "km" : "N/A";
+        /*  */
+        config.interface.change.background.image(current.weather[0].icon);
+      }
       /*  */
       state.appendChild(temp);
       state.appendChild(degree);
@@ -137,70 +142,70 @@ config.interface = {
       tr.appendChild(right);
       table.appendChild(tr);
       target.appendChild(table);
-      /*  */
-      config.interface.change.background.image(current.weather[0].icon);
     },
     "daily": function (collection, target) {
-      var element = {};
-      var dayfilter = [];
-      var forecast = document.createElement("div");
-      var dailytitle = document.createElement('p');
+      const element = {};
+      const dayfilter = [];
+      const forecast = document.createElement("div");
+      const dailytitle = document.createElement('p');
       /*  */
-      collection.list.forEach(function (p) {
-        if (dayfilter.length > 0) {
-          var found = dayfilter.some(q => q.dt_txt.substring(0, q.dt_txt.indexOf(' ')) === p.dt_txt.substring(0, p.dt_txt.indexOf(' ')));
-          if (found === false) {
+      if (collection.list) {
+        collection.list.forEach(function (p) {
+          if (dayfilter.length > 0) {
+            const found = dayfilter.some(q => q.dt_txt.substring(0, q.dt_txt.indexOf(' ')) === p.dt_txt.substring(0, p.dt_txt.indexOf(' ')));
+            if (found === false) {
+              dayfilter.push(p);
+            }
+          } else {
             dayfilter.push(p);
           }
-        } else {
-          dayfilter.push(p);
+        });
+        /*  */
+        forecast.className = "forecast";
+        dailytitle.textContent = "Daily";
+        dailytitle.className = "page-title";
+        /*  */
+        target.appendChild(dailytitle);
+        /*  */
+        for (let i = 1; i < 6; i++) {
+          element.min = document.createElement("span");
+          element.max = document.createElement("span");
+          element.date = document.createElement("span");
+          element.icon = document.createElement("span");
+          element.degree = document.createElement("div");
+          element.status = document.createElement("span");
+          element.forecast = document.createElement("div");
+          /*  */
+          const currentdate = dayfilter[i].dt_txt.split(' ')[0];
+          const currentcollection = collection.list.filter(p => p.dt_txt.split(' ')[0] === currentdate);
+          const minimumtemp = currentcollection.map(p => p.main.temp_min);
+          const maximumtemp = currentcollection.map(p => p.main.temp_max);
+          /*  */
+          element.min.className = "forecast-min";
+          element.max.className = "forecast-max";
+          element.date.className = "forecast-date";
+          element.icon.classList.add("forecast-icon");
+          element.degree.className = "forecast-degree";
+          element.forecast.className = "forecast-item";
+          element.status.className = "forecast-status";
+          element.status.textContent = dayfilter[i].weather[0].description;
+          element.date.textContent = config.handle.data.format.date(dayfilter[i].dt_txt);
+          element.icon.className = config.interface.find.icon(dayfilter[i].weather[0].icon);
+          element.min.textContent = Math.round(parseFloat(Math.min(...minimumtemp)), 0) + '°';
+          element.max.textContent = Math.round(parseFloat(Math.max(...maximumtemp)), 0) + '°';
+          element.forecast.dataset.date = dayfilter[i].dt_txt.substring(0, dayfilter[i].dt_txt.indexOf(' '));
+          /*  */
+          element.degree.appendChild(element.max);
+          element.degree.appendChild(element.min);
+          element.forecast.appendChild(element.date);
+          element.forecast.appendChild(element.icon);
+          element.forecast.appendChild(element.degree);
+          element.forecast.appendChild(element.status);
+          forecast.appendChild(element.forecast);
         }
-      });
-      /*  */
-      forecast.className = "forecast";
-      dailytitle.textContent = "Daily";
-      dailytitle.className = "page-title";
-      /*  */
-      target.appendChild(dailytitle);
-      /*  */
-      for (var i = 1; i < 6; i++) {
-        element.min = document.createElement("span");
-        element.max = document.createElement("span");
-        element.date = document.createElement("span");
-        element.icon = document.createElement("span");
-        element.degree = document.createElement("div");
-        element.status = document.createElement("span");
-        element.forecast = document.createElement("div");
         /*  */
-        var currentdate = dayfilter[i].dt_txt.split(' ')[0];
-        var currentcollection = collection.list.filter(p => p.dt_txt.split(' ')[0] === currentdate);
-        var minimumtemp = currentcollection.map(p => p.main.temp_min);
-        var maximumtemp = currentcollection.map(p => p.main.temp_max);
-        /*  */
-        element.min.className = "forecast-min";
-        element.max.className = "forecast-max";
-        element.date.className = "forecast-date";
-        element.icon.classList.add("forecast-icon");
-        element.degree.className = "forecast-degree";
-        element.forecast.className = "forecast-item";
-        element.status.className = "forecast-status";
-        element.status.textContent = dayfilter[i].weather[0].description;
-        element.date.textContent = config.handle.data.format.date(dayfilter[i].dt_txt);
-        element.icon.className = config.interface.find.icon(dayfilter[i].weather[0].icon);
-        element.min.textContent = Math.round(parseFloat(Math.min(...minimumtemp)), 0) + '°';
-        element.max.textContent = Math.round(parseFloat(Math.max(...maximumtemp)), 0) + '°';
-        element.forecast.dataset.date = dayfilter[i].dt_txt.substring(0, dayfilter[i].dt_txt.indexOf(' '));
-        /*  */
-        element.degree.appendChild(element.max);
-        element.degree.appendChild(element.min);
-        element.forecast.appendChild(element.date);
-        element.forecast.appendChild(element.icon);
-        element.forecast.appendChild(element.degree);
-        element.forecast.appendChild(element.status);
-        forecast.appendChild(element.forecast);
+        target.appendChild(forecast);
       }
-      /*  */
-      target.appendChild(forecast);
     }
   }
 };
